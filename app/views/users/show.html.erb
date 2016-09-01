@@ -1,0 +1,23 @@
+<% if @myself.id == @user.id %>
+<h1>Welcome <%=@myself.first_name%> </h1>
+<% @friend_requests.each do |x|%>
+<p> <%= x.friend.first_name%> wants to be your friend</p>
+<form action="/friendships/<%=x.friend.id%>" method="POST">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+	<input type="hidden"name="_method"value="patch">
+	<select name="friend_request">
+		<option value="accept"> Accept </option>
+		<option value= "decline"> Decline </option>
+	</select>
+	<button type="submit"> Submit </button>
+</form>	
+<%end%>		
+<%else%>
+<h1> Here is <%=@user.first_name%>'s profile </h1>
+<form action="/friendships/<%=@user.id%>" method="POST">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<button type="submit"> Add as friend </button>
+</form>	
+<%end%> 
+<a href="/users"> See all the users </a>

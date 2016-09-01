@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Social</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if flash[:error] %>
+<p> You have some errors </p>
+<%flash[:error].each do |x|%>
+	<li style="color:red;"><%=x%></li>	
+<%end%>
+<%end%>
+<%if false%>
+<% if current_user %>
+ 
+<%end%>
+<%end%>
+ <form action='/sessions' method='post'>
+    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Log Out'>
+  </form>
+<%= yield %>
+
+</body>
+</html>

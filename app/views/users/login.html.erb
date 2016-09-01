@@ -1,0 +1,27 @@
+<h1>Welcome</h1>
+<h3> Register </h3>
+
+<form action="/users" method= "POST">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	First name <input type='text' name= "user[first_name]">
+	Last name <input type='text' name= "user[last_name]">
+	Email <input type='text' name= "user[email]">
+	<!-- Location <input type='text' name= "user[city]">
+	<select name="user[state]">
+		<option value="WA"> WA
+		<option value= "CAL"> CAL
+	</select> -->
+	Date <input type="date" name= "user[birthday]">
+	Password<input type="text" name="user[password]">
+	Confirm Password<input type="text" name="user[password_confirmation]">
+	<button type="submit"> Register </button>
+</form>	
+
+<h3> Login </h3> 
+
+<form action="/sessions" method= "POST">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	Email <input type='text' name= "user[email]">
+	Password <input type='text' name= "user[password]">
+	<button type="submit"> Login </button>
+</form>	

@@ -1,0 +1,4 @@
+<h1>Here are all of the friends you have <%=@user.first_name%> </h1>
+<%@friends.each do |friend| %>
+	<p> <a href="users"/<%=friend.friend.id%>"> <%=friend.friend.first_name%> <%=friend.friend.last_name%> </p> 
+<%end%>	
