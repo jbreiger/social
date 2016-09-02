@@ -1,4 +1,15 @@
 class UsersController < ApplicationController
+  def edit
+    @user= User.find(session[:user_id])
+    render "edit.html.erb"
+  end
+  def update
+    user= User.find(session[:user_id])
+    user.update(user_params_update)
+    flash[:error] = ["Profile updated!"]
+    redirect_to (:back)
+  end 
+
   def login
   	render "login.html.erb"
   end	
@@ -32,4 +43,7 @@ class UsersController < ApplicationController
   def user_params
   params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :birthday)
 	end
+   def user_params_update
+  params.require(:user).permit(:first_name, :last_name, :email,:birthday)
+  end
 end

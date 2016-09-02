@@ -1,0 +1,21 @@
+<h1>Here are all of the posts</h1>
+<%@posts.each do |x| %>
+		<p> <%=x.user.first_name%> <%=x.user.last_name%> says <%=x.content%> </p>
+		<%if x.comments%>
+			<%x.comments.each do |y|%>
+				<h5> Comments </h5>
+				<p> <%=y.content%> </p>
+			<%end%>	
+		<%end%>
+		<form action= "/comments/<%=x.id%>" method="POST">
+			<input type= "textarea" name="content">
+			<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+			<button type="submit"> Comment </button>
+		</form>	
+				<p> ____________________</p>	
+
+			
+
+<%end%>	
+

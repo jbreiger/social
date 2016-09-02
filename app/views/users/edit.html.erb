@@ -1,0 +1,18 @@
+<h1> Edit your profile <%=@user.first_name%> </h1>
+
+<form action="/users" method= "POST">
+	<input type="hidden"name="_method"value="patch">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	First name <input type='text' name= "user[first_name]" value= "<%=@user.first_name%>">
+	Last name <input type='text' name= "user[last_name]"value= "<%=@user.last_name%>">
+	Email <input type='text' name= "user[email]" value= "<%=@user.email%>">
+	<!-- Location <input type='text' name= "user[city]">
+	<select name="user[state]">
+		<option value="WA"> WA
+		<option value= "CAL"> CAL
+	</select> -->
+	Birthday <input type="date" name= "user[birthday]" value="<%=@user.birthday%>">
+	<!-- Password<input type="text" name="user[password]" value="<%=@user.password%>">
+	Confirm Password<input type="text" name="user[password_confirmation]" value="<%=@user.birthday%>"> -->
+	<button type="submit"> Register </button>
+</form>	

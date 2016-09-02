@@ -1,17 +1,43 @@
 <% if @myself.id == @user.id %>
 <h1>Welcome <%=@myself.first_name%> </h1>
 <% @friend_requests.each do |x|%>
-<p> <%= x.friend.first_name%> wants to be your friend</p>
-<form action="/friendships/<%=x.friend.id%>" method="POST">
+<p> <a href="/users/<%= x.friend.id%>"> <%= x.friend.first_name%> <%= x.friend.last_name%> </a> 
+ wants to be your friend <form action="/friendships/<%=x.friend.id%>" method="POST">
 	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	
 
 	<input type="hidden"name="_method"value="patch">
-	<select name="friend_request">
+	<!-- <select class="custom-select" name="friend_request">
 		<option value="accept"> Accept </option>
 		<option value= "decline"> Decline </option>
-	</select>
-	<button type="submit"> Submit </button>
+	</select> -->
+	<input type="hidden" name= "friend_request" value="accept">
+	<button type="submit" class="btn btn-link"> Accept </button>
 </form>	
+
+<form action="/friendships/<%=x.friend.id%>" method="POST">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	
+
+	<input type="hidden"name="_method"value="patch">
+	<!-- <select class="custom-select" name="friend_request">
+		<option value="accept"> Accept </option>
+		<option value= "decline"> Decline </option>
+	</select> -->
+	<input type="hidden" name= "friend_request" value="decline">
+	<button type="submit" class="btn btn-link"> Decline </button>
+</form>
+</p>
+<div class="text-center">
+<form action= "/posts" method="post" class="col-xs-6">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<div class="form-group">
+  		<label for="content">What are you thinking?</label>
+  		<textarea class="form-control" rows="3" id="content" name="content"> </textarea>
+	</div>
+	<button type="submit" class="btn btn-primary"> Post </button>
+</form>	
+</div>
 <%end%>		
 <%else%>
 <h1> Here is <%=@user.first_name%>'s profile </h1>
@@ -20,4 +46,4 @@
 	<button type="submit"> Add as friend </button>
 </form>	
 <%end%> 
-<a href="/users"> See all the users </a>
+
